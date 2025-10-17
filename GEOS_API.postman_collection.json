@@ -1,0 +1,498 @@
+{
+  "info": {
+    "name": "GEOS Backend API",
+    "description": "Complete API documentation for GEOS Vehicle Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "1"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Owners",
+      "item": [
+        {
+          "name": "Create Owner",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"middleName\": \"Michael\",\n  \"lastName\": \"Doe\",\n  \"email\": \"john.doe@example.com\",\n  \"phone\": \"+1234567890\",\n  \"address\": \"123 Main St, New York, NY 10001\",\n  \"dob\": \"1985-05-15\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/owners",
+              "host": ["{{base_url}}"],
+              "path": ["api", "owners"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Owners",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/owners?page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "owners"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Owners (with search)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/owners?search=john&page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "owners"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "john"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Owners (by email)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/owners?email=example.com",
+              "host": ["{{base_url}}"],
+              "path": ["api", "owners"],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "example.com"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Owners (by phone)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/owners?phone=+123",
+              "host": ["{{base_url}}"],
+              "path": ["api", "owners"],
+              "query": [
+                {
+                  "key": "phone",
+                  "value": "+123"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Owner by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/owners/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "owners", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{owner_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Owner Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/owners/:id/stats",
+              "host": ["{{base_url}}"],
+              "path": ["api", "owners", ":id", "stats"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{owner_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Owner",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"middleName\": \"Michael\",\n  \"lastName\": \"Doe Updated\",\n  \"address\": \"456 Updated St, New York, NY 10002\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/owners/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "owners", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{owner_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Owner",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/owners/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "owners", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{owner_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Vehicles",
+      "item": [
+        {
+          "name": "Create Vehicle",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ownerId\": \"{{owner_id}}\",\n  \"make\": \"Toyota\",\n  \"model\": \"Camry\",\n  \"variant\": \"XLE\",\n  \"fuelType\": \"Petrol\",\n  \"color\": \"Silver\",\n  \"yearOfManufacture\": 2020,\n  \"chassisNumber\": \"CHAS123456789\",\n  \"engineNumber\": \"ENG123456789\",\n  \"odometer\": 25000,\n  \"vehicleType\": \"Sedan\",\n  \"rtoLocation\": \"NY-RTO-001\",\n  \"registrationNumber\": \"NY-1234-AB\",\n  \"insurancePolicyNumber\": \"INS-2020-001\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Vehicles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles?page=1&limit=10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Vehicles (with search)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles?search=toyota",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles"],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "toyota"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vehicles by Owner",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles?ownerId={{owner_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles"],
+              "query": [
+                {
+                  "key": "ownerId",
+                  "value": "{{owner_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vehicles by Make",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles?make=Toyota",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles"],
+              "query": [
+                {
+                  "key": "make",
+                  "value": "Toyota"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vehicles by Fuel Type",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles?fuelType=Petrol",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles"],
+              "query": [
+                {
+                  "key": "fuelType",
+                  "value": "Petrol"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vehicles by Year Range",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles?yearFrom=2020&yearTo=2023",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles"],
+              "query": [
+                {
+                  "key": "yearFrom",
+                  "value": "2020"
+                },
+                {
+                  "key": "yearTo",
+                  "value": "2023"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vehicles by Registration Number",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles?registrationNumber=NY-1234",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles"],
+              "query": [
+                {
+                  "key": "registrationNumber",
+                  "value": "NY-1234"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vehicle by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{vehicle_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Vehicle Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/:id/stats",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", ":id", "stats"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{vehicle_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Vehicle",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"color\": \"Blue\",\n  \"odometer\": 30000,\n  \"insurancePolicyNumber\": \"INS-2024-NEW\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{vehicle_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Vehicle",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/:id",
+              "host": ["{{base_url}}"],
+              "path": ["api", "vehicles", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "{{vehicle_id}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "owner_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "vehicle_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
