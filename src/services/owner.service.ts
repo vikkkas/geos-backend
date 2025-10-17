@@ -60,8 +60,32 @@ export class OwnerService {
       prisma.owner.count({ where }),
     ]);
 
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    
+    const [totalVehicles, newOwnersThisMonth] = await Promise.all([
+      prisma.vehicle.count(),
+      prisma.owner.count({
+        where: {
+          createdAt: {
+            gte: startOfMonth,
+          },
+        },
+      }),
+    ]);
+
+    const avgVehiclesPerOwner = total > 0 ? (totalVehicles / total).toFixed(2) : 0;
+
+    const stats = {
+      totalOwners: total,
+      totalVehicles,
+      avgVehiclesPerOwner: parseFloat(avgVehiclesPerOwner.toString()),
+      newOwnersThisMonth,
+    };
+
     return {
       owners,
+      stats,
       pagination: {
         total,
         page,

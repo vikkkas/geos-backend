@@ -8,7 +8,7 @@ const ownerService = new OwnerService();
 export class OwnerController {
   async createOwner(req: TypedRequest<any>, res: Response): Promise<Response> {
     try {
-      const { firstName, middleName, lastName, email, phone, address, dob } = req.body;
+      const { firstName, lastName, email, phone, address, dob } = req.body;
 
       if (!firstName || !lastName || !email || !phone) {
         return sendError(res, 'Missing required fields: firstName, lastName, email, phone', 400);
@@ -16,7 +16,6 @@ export class OwnerController {
 
       const owner = await ownerService.createOwner({
         firstName,
-        middleName,
         lastName,
         email,
         phone,
@@ -62,11 +61,10 @@ export class OwnerController {
   async updateOwner(req: TypedRequest<any>, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
-      const { firstName, middleName, lastName, email, phone, address, dob } = req.body;
+      const { firstName, lastName, email, phone, address, dob } = req.body;
 
       const owner = await ownerService.updateOwner(id, {
         firstName,
-        middleName,
         lastName,
         email,
         phone,

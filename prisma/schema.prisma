@@ -10,7 +10,6 @@ datasource db {
 model Owner {
   id          String     @id @default(uuid())
   firstName   String
-  middleName  String? 
   lastName    String
   email       String     @unique
   phone       String    @unique
